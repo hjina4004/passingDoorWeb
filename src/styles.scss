@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@font-face {
+   font-family: "Nanum Gothic";
+   font-style: normal;
+   font-weight: 400;
+   src: url('assets/fonts/font-NanumGothic/fonts/NanumGothic-Regular.eot?#iefix') format('embedded-opentype'),
+   url('assets/fonts/font-NanumGothic/fonts/NanumGothic-Regular.woff2') format('woff2'),
+   url('assets/fonts/font-NanumGothic/fonts/NanumGothic-Regular.woff') format('woff'),
+   url('assets/fonts/font-NanumGothic/fonts/NanumGothic-Regular.ttf') format('truetype');
+ }
+
+body {
+  font-family: "Nanum Gothic", Helvertica, Arial;
+  color: #888;
+}
