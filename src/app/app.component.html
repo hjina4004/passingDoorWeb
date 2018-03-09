@@ -24,10 +24,10 @@
         <div hidden class="user-name" id="user-name"></div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" id="sign-in" href="javascript:void(0)">로그인</a>
+        <a [hidden]="auth.authenticated" class="nav-link" (click)="signIn()" href="javascript:void(0);">로그인</a>
       </li>
       <li class="nav-item">
-        <a hidden class="nav-link" id="sign-out" href="javascript:void(0)">로그아웃</a>
+        <a [hidden]="!auth.authenticated" class="nav-link" (click)="signOut()" href="javascript:void(0);">로그아웃</a>
       </li>
     </ul>
   </div>

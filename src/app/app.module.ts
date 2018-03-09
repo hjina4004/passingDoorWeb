@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { BlogComponent } from './blog/blog.component';
 import { AdminComponent } from './admin/admin.component';
 
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminComponent } from './admin/admin.component';
     AppRoutingModule
   ],
   providers: [
+    AuthService,
     AngularFireDatabase
   ],
   bootstrap: [ AppComponent ]
