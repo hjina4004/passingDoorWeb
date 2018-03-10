@@ -13,7 +13,7 @@ export class AppComponent {
   title = '합격문 v1.0';
 
   constructor(
-    private auth: AuthService
+    public auth: AuthService
   ) {
   }
 
