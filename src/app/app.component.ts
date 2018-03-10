@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { AuthService } from './services/auth.service';
-
+import * as $ from 'jquery';
+import 'bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -22,5 +23,17 @@ export class AppComponent {
 
   signOut() {
     this.auth.signOut();
+  }
+
+  openModal() {
+    $('#myModal').modal('show');
+  }
+
+  confirmModal(res) {
+    console.log("confirmModal:", res);
+    $('#myModal').modal('hide');
+
+    let data = {key: "confirmModal", value: res === 1};
+    this.auth.emit(data);
   }
 }

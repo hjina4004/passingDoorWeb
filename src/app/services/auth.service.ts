@@ -1,22 +1,36 @@
 import { Injectable } from '@angular/core';
+
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase';
+
+import { Subject, BehaviorSubject } from "rxjs/Rx";
 
 
 @Injectable()
 export class AuthService {
   authState: any = null;
 
+  emitChange$: Subject<any> = new BehaviorSubject<any>(null);
+
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
     private router:Router) {
-    console.log("AuthService constructor");
     this.afAuth.authState.subscribe((auth) => {
-      this.authState = auth
+      this.authState = auth;
+      console.log("AuthService authState: ", auth);
+      let data = {key: "authState", value: this.authenticated};
+      this.emit(data);
     });
+  }
+
+  emit(value: any) {
+    this.emitChange$.next(value);
+  }
+  get emitChange(): BehaviorSubject<any> {
+    return (this.emitChange$ as BehaviorSubject<any>);
   }
 
   // Returns true if user is logged in
@@ -122,7 +136,7 @@ export class AuthService {
   //// Sign Out ////
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   //// Helpers ////
