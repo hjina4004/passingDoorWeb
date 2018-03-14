@@ -1,0 +1,8 @@
+<div class="list" [hidden] = "!isShow">
+  <div *ngFor="let item of notices | async">
+    <button type="button" class="btn btn-block btn-outline-primary" (click)="expandItem(item)">{{ item.title }}</button>
+    <div [hidden]="!item.expanded">
+      <textarea class="form-control" rows="5" (change)="doTextareaValueChange(item, $event)">{{item.content}}</textarea>
+    </div>
+  </div>
+</div>

@@ -33,37 +33,34 @@
   </div>
 </nav>
 
-<div class="container">
-  <h1>{{ title }}</h1>
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
 
-  <!-- Button to Open the Modal -->
-  <!--
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-  </button>
-  -->
-  <button type="button" class="btn btn-primary" (click)="openModal()">Open modal</button>
+<!-- Button to Open the Modal -->
+<!--
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Open modal
+</button>
+<button type="button" class="btn btn-primary" (click)="openModal()">Open modal</button>
+-->
 
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" (click)="confirmModal(0)">&times;</button>
-        </div>
-        <!-- Modal body -->
-        <div class="modal-body">
-          Modal body..
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="confirmModal(1)">OK</button>
-          <button type="button" class="btn btn-default" (click)="confirmModal(0)">Cancel</button>
-        </div>
-        </div>
-    </div>
+<!-- The Modal -->
+<div class="modal fade" id="myModal" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" (click)="confirmModal(0)">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Modal body..
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="confirmModal(1)">OK</button>
+        <button type="button" class="btn btn-default" (click)="confirmModal(0)">Cancel</button>
+      </div>
+      </div>
   </div>
 </div>

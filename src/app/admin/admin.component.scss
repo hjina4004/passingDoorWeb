@@ -1,0 +1,43 @@
+.nav.pullLeft {
+  display: block;
+  li {
+    margin: 10px 30px 10px 5px;
+    .div-link {
+      padding: 10px 20px;
+      cursor: pointer;
+      position: relative;
+    }
+    .div-link:before {
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      content: '';
+      background: red;
+      opacity: 0.3;
+      transition: all 0.3s;
+    }
+    .div-link:hover:before {
+      width: 100%;
+    }
+  }
+  li.active {
+    .div-link {
+      cursor: initial;
+      position: relative;
+      background: rgba(0, 255, 0, 0.3);
+    }
+    .div-link:before {
+      position: absolute;
+      width: 10px;
+      height: 100%;
+      left: 0px;
+      top: 0px;
+      content: '';
+      background: green;
+      opacity: 0.3;
+      transition: all 0.3s;
+    }
+  }
+}

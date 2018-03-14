@@ -13,12 +13,22 @@ import { BlogComponent } from './blog/blog.component';
 import { AdminComponent } from './admin/admin.component';
 
 import { AuthService } from './services/auth.service';
+import { MemberComponent } from './admin/member/member.component';
+import { NoticeComponent } from './admin/notice/notice.component';
+import { NoticeUsageComponent } from './admin/notice-usage/notice-usage.component';
+import { NoticeEventComponent } from './admin/notice-event/notice-event.component';
+import { ProblemComponent } from './admin/problem/problem.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogComponent,
-    AdminComponent
+    AdminComponent,
+    MemberComponent,
+    NoticeComponent,
+    NoticeUsageComponent,
+    NoticeEventComponent,
+    ProblemComponent
   ],
   imports: [
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
