@@ -1,8 +1,33 @@
-<div class="list" [hidden] = "!isShow">
-  <div *ngFor="let item of notices | async">
-    <button type="button" class="btn btn-block btn-outline-primary" (click)="expandItem(item)">{{ item.title }}</button>
-    <div [hidden]="!item.expanded">
-      <textarea class="form-control" rows="5" (change)="doTextareaValueChange(item, $event)">{{item.content}}</textarea>
+<div [hidden]="!isShow" class="pdw-list">
+  <div class="row justify-content-end pdw-item">
+    <div class="col-sm-2 col-6">
+      <button type="button" class="btn btn-block btn-outline-success" (click)="prepareAddEditItem()">추가</button>
+    </div>
+  </div>
+
+  <div class="pdw-item" *ngFor="let item of notices | async">
+    <div class="form-control item-title" (click)="expandItem(item)">
+      {{ item.title }}
+      <button type="button" class="btn btn-outline-danger" (click)="prepareDeleteItem(item, $event)">삭제</button>
+    </div>
+    <div [hidden]="!item.expanded" class="item-content">
+      <div [hidden]="item.editing" class="form-control preview-content">
+        <p [innerHtml]="item.content"></p>
+        <div class="row justify-content-end">
+          <div [hidden]="item.editing" class="col-sm-2 col-6">
+            <button type="button" class="btn btn-block btn-outline-primary" (click)="prepareEditItem(item)">수정</button>
+          </div>
+        </div>
+      </div>
+      <textarea [hidden]="!item.editing" class="form-control" rows="5" [(ngModel)]='item.editedContent'></textarea>
+      <div [hidden]="!item.editing" class="row justify-content-end excute-buttons">
+        <div class="col-sm-2 col-6">
+          <button type="button" class="btn btn-block btn-outline-primary" [disabled]="item.editedContent == item.content" (click)="editItem(item)">완료</button>
+        </div>
+        <div class="col-sm-2 col-6">
+          <button type="button" class="btn btn-block btn-outline-secondary" (click)="cancelEditItem(item)">취소</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

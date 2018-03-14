@@ -9,8 +9,7 @@ import { BaseChild } from '../base-child';
 })
 export class NoticeUsageComponent extends BaseChild implements OnInit {
   constructor() {
-     super();
-     this.setTitle('usage');
+     super('usage');
   }
 
   ngOnInit() {

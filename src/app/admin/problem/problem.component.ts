@@ -9,8 +9,7 @@ import { BaseChild } from '../base-child';
 })
 export class ProblemComponent extends BaseChild implements OnInit {
   constructor() {
-     super();
-     this.setTitle('problem');
+     super('problem');
   }
 
   ngOnInit() {

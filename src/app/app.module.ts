@@ -18,6 +18,7 @@ import { NoticeComponent } from './admin/notice/notice.component';
 import { NoticeUsageComponent } from './admin/notice-usage/notice-usage.component';
 import { NoticeEventComponent } from './admin/notice-event/notice-event.component';
 import { ProblemComponent } from './admin/problem/problem.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ProblemComponent } from './admin/problem/problem.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [
