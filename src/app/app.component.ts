@@ -33,7 +33,11 @@ export class AppComponent {
     console.log("confirmModal:", res);
     $('#myModal').modal('hide');
 
-    let data = {key: "confirmModal", value: res === 1};
+    let key = $('#myModal').find('.modal-type').val();
+    if (!key || key == '')
+      key = "confirmModal";
+
+    let data = {key: key, value: res === 1};
     this.auth.emit(data);
   }
 }

@@ -20,9 +20,12 @@ export class BaseChild {
     return this.contentText;
   }
 
-  confirmModal(data) {
+  showConfirmModal(data) {
     $('#myModal').modal('show');
     $('#myModal').find('.modal-title').html(data.title);
     $('#myModal').find('.modal-body').html(data.message);
+
+    if (data.type)  $('#myModal').find('.modal-type').val(data.type);
+    else            $('#myModal').find('.modal-type').val('');
   }
 }
