@@ -53,6 +53,11 @@ export class AuthService {
     return this.authenticated ? this.authState.uid : '';
   }
 
+  // Returns current user email
+  get currentUserEmail(): string {
+    return this.authenticated ? this.authState.email : '';
+  }
+
   // Anonymous User
   get currentUserAnonymous(): boolean {
     return this.authenticated ? this.authState.isAnonymous : false

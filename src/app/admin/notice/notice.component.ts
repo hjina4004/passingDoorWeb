@@ -1,4 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
+
+import { AppService } from '../../services/app.service';
+import * as $ from 'jquery';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { AuthService } from '../../services/auth.service';
 import { ISubscription } from "rxjs/Subscription";
@@ -25,10 +29,14 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   private modeAdd = false;
 
   constructor(
+    private toastr: ToastsManager,
+    private vcr: ViewContainerRef,
+    private app: AppService,
     private auth: AuthService,
     private afDB: AngularFireDatabase
   ) {
      super('notice');
+     this.toastr.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
@@ -63,6 +71,9 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   prepareAddEditItem() {
+    $("#titleItem").val("");
+    $("#contentItem").val("");
+
     this.newItem.idx = "";
     this.newItem.writer = "";
     this.newItem.reg_date = "";
@@ -84,25 +95,37 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   addEditItem() {
-    /***
-    content:
-    "안녕하세요.<br><font color=\"red\">합격문</font>에서 알려 드립니다."
-    idx:
-    "admin-20180306145700"
-    level:
-    0
-    order:
-    0
-    reg_date:
-    "2018-03-06 14:57:00"
-    title:
-    "합격문 서비스 준비 중입니다."
-    update_date:
-    "2018-03-14T16:39"
-    writer:
-    "admin"
-    ***/
-    let regDate = new Date().toISOString().slice(0,16);
+    let titleItem = $("#titleItem").val();
+    let contentItem = $("#contentItem").val()
+      .replace(/<script/g,"&lt;script")
+      .replace(/<\/script/g,"&lt;/script")
+      .replace(/\r\n/g,"<br/>")
+      .replace(/\n/g,"<br/>");
+
+    if (titleItem.length < 4){
+      this.toastr.warning('제목을 입력하세요.', null);
+      return;
+    } else if (contentItem.length < 4){
+      this.toastr.warning('내용을 입력하세요.', null);
+      return;
+    }
+
+    let regDate = this.app.getDateWithUTCOffset();
+    let writer  = this.auth.currentUserEmail.split('@')[0];
+
+    this.newItem.idx = writer + "-" + regDate.replace(/[^0-9]/g,"");
+    this.newItem.writer = writer;
+    this.newItem.reg_date = regDate;
+    this.newItem.update_date = regDate;
+    this.newItem.title = titleItem;
+    this.newItem.content = contentItem;
+    this.newItem.level = 0;
+    this.newItem.order = 0;
+
+    const itemsRef = this.afDB.list('/notice');
+    itemsRef.push(this.newItem);
+
+    this.modeAdd = false;
   }
 
   deleteItem(item) {

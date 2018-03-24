@@ -18,7 +18,10 @@ import { NoticeComponent } from './admin/notice/notice.component';
 import { NoticeUsageComponent } from './admin/notice-usage/notice-usage.component';
 import { NoticeEventComponent } from './admin/notice-event/notice-event.component';
 import { ProblemComponent } from './admin/problem/problem.component';
-import {FormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { AppService } from './services/app.service';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,10 +40,13 @@ import {FormsModule} from "@angular/forms";
     AngularFireAuthModule,
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ToastModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
     AuthService,
+    AppService,
     AngularFireDatabase
   ],
   bootstrap: [ AppComponent ]
