@@ -22,11 +22,12 @@ import { INotice } from '../../models/notice.m';
   styleUrls: ['./notice.component.scss']
 })
 export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
-  private notices: Observable<INotice[]>;
   private subscription: ISubscription;
   private selectedItem: INotice = null;
   private newItem = {} as INotice;
-  private modeAdd = false;
+
+  notices: Observable<INotice[]>;
+  modeAdd = false;
 
   constructor(
     private toastr: ToastsManager,
@@ -144,7 +145,11 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   editItem(item) {
-    item.content = item.editedContent;
+    item.content = item.editedContent
+      .replace(/<script/g,"&lt;script")
+      .replace(/<\/script/g,"&lt;/script")
+      .replace(/\r\n/g,"<br/>")
+      .replace(/\n/g,"<br/>");
 
     let data = {} as INotice;
     data.idx = item.idx;

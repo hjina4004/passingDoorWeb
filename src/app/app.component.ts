@@ -40,4 +40,10 @@ export class AppComponent {
     let data = {key: key, value: res === 1};
     this.auth.emit(data);
   }
+
+  get isAdmin(): boolean {
+    if (!this.auth.authState) { return false }
+    else if (this.auth.currentUserInfo.usrLevel == '10')  { return true }
+    return false;
+  }
 }

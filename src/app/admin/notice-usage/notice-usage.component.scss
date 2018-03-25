@@ -1,0 +1,28 @@
+@import '~_variables.scss';
+
+.pdw-list {
+  .pdw-item {
+    padding: 3px;
+    .item-title {
+      border: 1px solid $primary-color;
+      .btn {
+        float: right;
+        padding-top: 0;
+        padding-bottom: 2px;
+        margin-left: 5px;
+        font-size: 0.9em;
+      }
+    }
+    .item-content {
+      .excute-buttons {
+        padding-top: 3px;
+      }
+    }
+  }
+}
+
+.form-add-notice {
+  background: rgba(0, 0, 0, 0.01);
+  padding: 30px 30px 14px 30px;
+  margin-bottom: 20px;
+}

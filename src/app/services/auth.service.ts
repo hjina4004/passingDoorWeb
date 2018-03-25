@@ -6,11 +6,15 @@ import { Router } from "@angular/router";
 import * as firebase from 'firebase';
 
 import { Subject, BehaviorSubject } from "rxjs/Rx";
-
+import { ISubscription } from "rxjs/Subscription";
+import { IUserInfo } from "../models/user.m"
 
 @Injectable()
 export class AuthService {
   authState: any = null;
+
+  private subscription: ISubscription = null;
+  userInfo = {} as IUserInfo;
 
   emitChange$: Subject<any> = new BehaviorSubject<any>(null);
 
@@ -156,5 +160,19 @@ export class AuthService {
 
     this.db.object(path).update(data)
     .catch(error => console.log(error));
+
+    if (this.subscription !== null) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
+
+    this.subscription = this.db.object(path).snapshotChanges().subscribe(action => {
+      this.userInfo = action.payload.val();
+    });
+  }
+
+  // Returns current user UID
+  get currentUserInfo(): IUserInfo {
+    return this.authenticated ? this.userInfo : null;
   }
 }

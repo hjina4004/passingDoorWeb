@@ -1,7 +1,7 @@
 import * as $ from 'jquery';
 
 export class BaseChild {
-  private isShow = false;
+  isShow = false;
   private contentText = 'child';
 
   constructor(title:string) {

@@ -1,5 +1,4 @@
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
-import { ISubscription } from "rxjs/Subscription";
 
 import { AuthService } from '../services/auth.service';
 import { Router } from "@angular/router";
@@ -25,7 +24,6 @@ export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(ProblemComponent) problemComponent: ProblemComponent;
 
   title = "합격문 관리자";
-  private subscription: ISubscription;
   private currentMenu: BaseChild = null;
 
   constructor(
@@ -34,21 +32,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.subscription = this.auth.emitChange.subscribe(data => {
-      console.log(data);
-      // if (data == "authState") {
-      //   this.crrentAuthState();
-      // }
-    });
     console.log("admin - ngOnInit done");
 
+    this.crrentAuthState();
     this.currentMenu = this.memberComponent;
     this.goToMenu('notice');
   }
 
   ngOnDestroy() {
-    console.log("admin - ngOnDestroy ...");
-    this.subscription.unsubscribe();
     console.log("admin - ngOnDestroy done");
   }
 
