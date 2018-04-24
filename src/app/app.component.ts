@@ -43,7 +43,7 @@ export class AppComponent {
 
   get isAdmin(): boolean {
     if (!this.auth.authState) { return false }
-    else if (this.auth.currentUserInfo.usrLevel == '10')  { return true }
+    else if (this.auth.currentUserInfo.level == '10')  { return true }
     return false;
   }
 }
