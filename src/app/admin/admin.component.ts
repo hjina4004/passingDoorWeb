@@ -8,6 +8,7 @@ import { MemberComponent } from "./member/member.component"
 import { NoticeComponent } from "./notice/notice.component"
 import { NoticeEventComponent } from "./notice-event/notice-event.component"
 import { NoticeUsageComponent } from "./notice-usage/notice-usage.component"
+import { QnaComponent } from "./qna/qna.component"
 import { ProblemComponent } from "./problem/problem.component"
 
 
@@ -21,6 +22,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(NoticeComponent) noticeComponent: NoticeComponent;
   @ViewChild(NoticeEventComponent) noticeEventComponent: NoticeEventComponent;
   @ViewChild(NoticeUsageComponent) noticeUsageComponent: NoticeUsageComponent;
+  @ViewChild(QnaComponent) qnaComponent: QnaComponent;
   @ViewChild(ProblemComponent) problemComponent: ProblemComponent;
 
   title = "합격문 관리자";
@@ -64,6 +66,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.currentMenu = this.noticeComponent;
     } else if (menu == 'usage') {
       this.currentMenu = this.noticeUsageComponent;
+    } else if (menu == 'qna') {
+      this.currentMenu = this.qnaComponent;
     } else if (menu == 'problem') {
       this.currentMenu = this.problemComponent;
     }

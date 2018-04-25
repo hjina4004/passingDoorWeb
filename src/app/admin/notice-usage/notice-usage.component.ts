@@ -104,7 +104,7 @@ export class NoticeUsageComponent extends BaseChild implements OnInit, OnDestroy
       .replace(/\n/g,"<br/>");
 
     if (titleItem.length < 4){
-      this.toastr.warning('제목을 입력하세요.', null);
+      this.toastr.warning('제목을 입력하세요.:'+titleItem, null);
       return;
     } else if (contentItem.length < 4){
       this.toastr.warning('내용을 입력하세요.', null);

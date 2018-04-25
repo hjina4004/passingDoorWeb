@@ -1,0 +1,45 @@
+<div *ngIf="isShow" class="pdw-list">
+  <div class="pdw-item" *ngFor="let item of qnas | async">
+    <div class="form-control item-title" (click)="expandItem(item)">
+      {{ item.title }}
+      <button type="button" class="btn btn-outline-danger" (click)="prepareDeleteItem(item, $event)">삭제</button>
+      <button [hidden]="item.expanded" type="button" class="btn btn-outline-primary">{{labelBtnWrite(item)}}</button>
+    </div>
+    <div [hidden]="!item.expanded" class="item-content">
+      <div class="form-control preview-content">
+        <p [innerHtml]="item.content"></p>
+
+        <div class="form-control">
+          <table class="table">
+            <thead class="thead-light">
+              <tr><th>운영자 답변</th></tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="item.comment && !item.editing"><td [innerHtml]="item.comment.content"></td></tr>
+              <tr *ngIf="!item.comment && !item.editing"><td><div class="alert alert-warning">답변을 하지 않은 상태입니다.</div></td></tr>
+              <tr *ngIf="item.editing"><td style="padding:0.75rem 0px;"><textarea class="form-control" rows="5" [(ngModel)]='item.editedContent'></textarea></td></tr>
+            </tbody>
+          </table>
+
+          <div [hidden]="item.editing" class="row justify-content-end">
+            <div class="col-sm-2 col-6">
+              <button type="button" class="btn btn-block btn-outline-primary" (click)="prepareEditItem(item)">{{labelBtnWrite(item)}}</button>
+            </div>
+            <div class="col-sm-2 col-6">
+              <button type="button" class="btn btn-block btn-outline-secondary" (click)="expandItem(item)">취소</button>
+            </div>
+          </div>
+
+          <div *ngIf="item.editing" class="row justify-content-end excute-buttons">
+            <div class="col-sm-2 col-6">
+              <button type="button" class="btn btn-block btn-outline-primary" [disabled]="item.editedContent == item.comment.content" (click)="editItem(item)">완료</button>
+            </div>
+            <div class="col-sm-2 col-6">
+              <button type="button" class="btn btn-block btn-outline-secondary" (click)="cancelEditItem(item)">취소</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

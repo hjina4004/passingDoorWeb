@@ -1,8 +1,8 @@
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAJnJiac9eQJvVwC1IsJSsFcHPIMhf7Jxg",
-  authDomain: "passingdoor.firebaseapp.com",
-  databaseURL: "https://passingdoor.firebaseio.com",
-  projectId: "passingdoor",
-  storageBucket: "passingdoor.appspot.com",
-  messagingSenderId: "897443249754"
+  apiKey: "AIzaSyDf8zoIepMHDpnqC5kQDOm8yvlZtzR-PRo",
+  authDomain: "passingdoor-f3b31.firebaseapp.com",
+  databaseURL: "https://passingdoor-f3b31.firebaseio.com",
+  projectId: "passingdoor-f3b31",
+  storageBucket: "passingdoor-f3b31.appspot.com",
+  messagingSenderId: "150849667047"
 }

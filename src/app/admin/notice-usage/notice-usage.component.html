@@ -1,4 +1,4 @@
-<div [hidden]="!isShow" class="pdw-list">
+<div *ngIf="isShow" class="pdw-list">
   <div class="row justify-content-end pdw-item">
     <div class="col-sm-2 col-6">
       <button [hidden]="modeAdd" type="button" class="btn btn-block btn-outline-success" (click)="prepareAddEditItem()">추가</button>
