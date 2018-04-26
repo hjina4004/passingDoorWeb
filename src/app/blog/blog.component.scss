@@ -15,6 +15,15 @@ section {
   .row:last-child {
     margin-bottom: 0;
   }
+  .container {
+    margin-top: 3em;
+    h3 {margin-bottom: 1em;}
+    .form-group {
+      .form-control {
+        background-color: rgba(0,0,0,0.08);
+      }
+    }
+  }
 }
 
 .section-primary {
@@ -26,9 +35,13 @@ section {
   }
 }
 
+.col-vs {height: 0px;}
 .col-vs::after {
   content: ' ';
   display: block;
+  position: absolute;
+  left: calc(50% - 200px);
+  bottom: 0px;
   background-color: #27327d;
   width: 400px;
   height: 3px;
@@ -54,6 +67,17 @@ section {
   background-color: #dfe1ed;
   line-height: 1.5em;
 }
+.section-footer {
+  text-align: center;
+  background-color: #dfe1ed;
+  color: rgba(0,0,0,0.6);
+  font-size: 0.875em;
+  .col-name {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+}
+
 .xs-show {display: none;}
 .xs-hide {display: block;}
 .div-relative {position: relative;}
@@ -76,10 +100,28 @@ section {
   }
 }
 
+.col-circle::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  border: 5px solid #27327d;
+  z-index: -10;
+}
+
 @media (max-width: 575px) {
   section {
     font-size: 14pt;
     padding: 10px;
+    .row {
+      margin-bottom: 2em;
+    }
+  }
+  .section-description {
+    font-size: 0.98em;
   }
   .xs-show {display: block;}
   .xs-hide {display: none;}

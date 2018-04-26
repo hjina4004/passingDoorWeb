@@ -1,0 +1,16 @@
+@import '~_variables.scss';
+
+.top-title {
+  text-align: center;
+  background-color: $primary-color;
+  font-size: 2em;
+  padding: 1em;
+  color: #fafafa;
+}
+
+a.nav-link {
+  img {
+    width: 16px;
+    margin: 0 10px 2px;
+  }
+}

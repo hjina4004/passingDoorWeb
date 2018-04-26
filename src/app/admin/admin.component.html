@@ -5,7 +5,7 @@
     <div class="col-sm-3">
       <ul class="nav pullLeft">
         <li [ngClass]="(stringCurrentMenu == 'member')? 'active':''"><div class="div-link" (click)="goToMenu('member')">회원</div></li>
-        <li [ngClass]="(stringCurrentMenu == 'event')? 'active':''"><div class="div-link" (click)="goToMenu('event')">이벤트</div></li>
+        <!-- <li [ngClass]="(stringCurrentMenu == 'event')? 'active':''"><div class="div-link" (click)="goToMenu('event')">이벤트</div></li> -->
         <li [ngClass]="(stringCurrentMenu == 'notice')? 'active':''"><div class="div-link" (click)="goToMenu('notice')">공지 사항</div></li>
         <li [ngClass]="(stringCurrentMenu == 'usage')? 'active':''"><div class="div-link" (click)="goToMenu('usage')">이용 방법</div></li>
         <li [ngClass]="(stringCurrentMenu == 'qna')? 'active':''"><div class="div-link" (click)="goToMenu('qna')">1:1 질문</div></li>
@@ -16,7 +16,7 @@
     <div class="col-sm-9">
       <app-member></app-member>
       <app-notice></app-notice>
-      <app-notice-event></app-notice-event>
+      <!-- <app-notice-event></app-notice-event> -->
       <app-notice-usage></app-notice-usage>
       <app-problem></app-problem>
       <app-qna></app-qna>

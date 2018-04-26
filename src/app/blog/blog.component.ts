@@ -10,8 +10,9 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./blog.component.scss']
 })
 export class BlogComponent implements OnInit, OnDestroy {
-  title = "족보와 기출문제로 한방에~! 합격문입니다.";
   private subscription: ISubscription;
+
+  itemQnA = {name:"", phone:"", content:""};
 
   constructor(
     private auth: AuthService
@@ -28,5 +29,12 @@ export class BlogComponent implements OnInit, OnDestroy {
     console.log("blog - ngOnDestroy ...");
     this.subscription.unsubscribe();
     console.log("blog - ngOnDestroy done");
+  }
+
+  mailto() {
+    const strMail = 'mailto:help@passok.kr';
+    let subject = '?subject=' + encodeURI(this.itemQnA.name + '이 합격문에 문의드립니다.');
+    let body = '&body=' + encodeURI('이름: ' + this.itemQnA.name + '\n전화번호: ' + this.itemQnA.phone + '\n\n' + this.itemQnA.content);
+    window.location.href = strMail + subject + body;
   }
 }

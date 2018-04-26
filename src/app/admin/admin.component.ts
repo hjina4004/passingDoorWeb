@@ -6,7 +6,7 @@ import { Router } from "@angular/router";
 import { BaseChild } from "./base-child"
 import { MemberComponent } from "./member/member.component"
 import { NoticeComponent } from "./notice/notice.component"
-import { NoticeEventComponent } from "./notice-event/notice-event.component"
+// import { NoticeEventComponent } from "./notice-event/notice-event.component"
 import { NoticeUsageComponent } from "./notice-usage/notice-usage.component"
 import { QnaComponent } from "./qna/qna.component"
 import { ProblemComponent } from "./problem/problem.component"
@@ -20,7 +20,7 @@ import { ProblemComponent } from "./problem/problem.component"
 export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(MemberComponent) memberComponent: MemberComponent;
   @ViewChild(NoticeComponent) noticeComponent: NoticeComponent;
-  @ViewChild(NoticeEventComponent) noticeEventComponent: NoticeEventComponent;
+  // @ViewChild(NoticeEventComponent) noticeEventComponent: NoticeEventComponent;
   @ViewChild(NoticeUsageComponent) noticeUsageComponent: NoticeUsageComponent;
   @ViewChild(QnaComponent) qnaComponent: QnaComponent;
   @ViewChild(ProblemComponent) problemComponent: ProblemComponent;
@@ -60,8 +60,8 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     if (menu == 'member') {
       this.currentMenu = this.memberComponent;
-    } else if (menu == 'event') {
-      this.currentMenu = this.noticeEventComponent;
+    // } else if (menu == 'event') {
+    //   this.currentMenu = this.noticeEventComponent;
     } else if (menu == 'notice') {
       this.currentMenu = this.noticeComponent;
     } else if (menu == 'usage') {

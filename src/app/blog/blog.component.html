@@ -40,16 +40,19 @@
   </div>
 </section>
 
-<section>
+<section class="section-description">
   <div class="container">
     <div class="row">
       <div class="col col-ord">01</div>
     </div>
     <div class="row">
-      <div class="col col-vs">
+      <div class="col">
         공부 따로 문제풀이 따로?<br/>
         공부는 했는데 문제를 풀면 모르겠다구요?
       </div>
+    </div>
+    <div class="row">
+      <div class="col col-vs">&nbsp;</div>
     </div>
     <div class="row">
       <div class="col text-right">
@@ -73,6 +76,147 @@
       <div class="col-6">
         <img class="img-fluid" src="../../assets/images/phone.png"/>
       </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row d-flex flex-row-reverse">
+      <div class="col-md-7 col-12 text-right">
+        <div class="row">
+          <div class="col col-ord">02</div>
+        </div>
+        <div class="row">
+          <div class="col">
+            공부 분량이 너무 많죠?<br/>
+            중요한 것만 딱 줄여서 공부했으면 좋겠지요?
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>이제는</strong><br/>
+            자주 출제되는 중요한 부분을 판단하고<br/>
+            공부해서 시간도 아끼고 공부효율도 높이세요.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 col-12">
+        <div class="col-circle xs-hide">&nbsp;</div>
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-ord">03</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        돌아서면 잊어버리고,<br/>
+        공부를 어디까지 했는지<br/>
+        잘하고 있는건지<br/>
+        매일 매일 불안하시죠?
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-vs">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col text-right">
+        학습진행 상황 서비스를 이용하여<br/>
+        <strong>진도률</strong>과 <strong>정답률</strong>을 확인하면서<br/>
+        스마트하게 공부하세요.
+      </div>
+    </div>
+    <div class="row div-relative text-center">
+      <div class="col-md-6 col-12">
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+      </div>
+      <div class="col-md-6 col-12">
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col col-ord">04</div>
+    </div>
+    <div class="row">
+      <div class="col">
+        기출문제를 단순히 년도별로만<br/>
+        공부하시나요?<br/>
+        공부에 별 도움이 안되실거예요.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-vs">&nbsp;</div>
+    </div>
+    <div class="row">
+      <div class="col text-right">
+        합격문만의 핵심 기능인<br/>
+        키워드 검색과 목차별 기출풀이등<br/>
+        <strong>다양한 기출문제 풀이</strong>를 통해
+      </div>
+    </div>
+    <div class="row div-relative text-center">
+      <div class="col-absolute">
+        <p>
+          공부 효과도 높이고<br/>
+          나에게 맞는 공무를 하세요
+        </p>
+      </div>
+      <div class="col-md-6 col-12">
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+      </div>
+      <div class="col-md-6 col-12">
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+      </div>
+    </div>
+    <div class="row justify-content-center text-center">
+      <div class="col-md-6 col-12">
+        <img class="img-fluid" src="../../assets/images/phone.png"/>
+        <br/>
+        <img width="240" src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3>합격문에 문의 하기</h3>
+    <form action="return false">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="이름" [(ngModel)]="itemQnA.name" name="qna_name">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="전화번호" [(ngModel)]="itemQnA.phone" name="qna_phone">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" rows="5" placeholder="문의 사항" [(ngModel)]="itemQnA.content" name="qna_content"></textarea>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-block btn-primary" (click)="mailto()">보내기</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="section-footer">
+  <div class="row">
+    <div class="col">
+      <img src="../../assets/images/ci.png" style="width:260px;padding-right:40px;"/>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-name">합격문</div>
+  </div>
+  <div class="row">
+    <div class="col">
+      대표: 김영상 / 사업자등록번호: 761-02-00977 /<br/>
+      통신판매업 신고: 0000-서울송파-00000 /<br/>
+      주소: 서울특별시 송파구 올림픽로 135 /<div class="xs-show"></div> 이메일: help@passok.kr
     </div>
   </div>
 </section>
