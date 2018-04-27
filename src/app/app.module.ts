@@ -23,6 +23,7 @@ import { FormsModule } from "@angular/forms";
 import { AppService } from './services/app.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NoticeUsageComponent,
     NoticeEventComponent,
     ProblemComponent,
-    QnaComponent
+    QnaComponent,
+    LoginComponent
   ],
   imports: [
     AngularFireModule.initializeApp(FIREBASE_CONFIG),

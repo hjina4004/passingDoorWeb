@@ -1,64 +1,13 @@
-<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:24px;">
-  <a class="navbar-brand" href="javascript:void(0)">합격문</a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navb">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="link-features" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="javascript:noticePublic();">Pricing</a>
-      </li>
-      <li [hidden]="!isAdmin" class="nav-item">
-        <a class="nav-link" routerLink="admin">Admin</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <div hidden class="user-pic" id="user-pic"></div>
-      </li>
-      <li class="nav-item">
-        <div hidden class="user-name" id="user-name"></div>
-      </li>
-      <li class="nav-item">
-        <a [hidden]="auth.authenticated" class="nav-link" (click)="signIn()" href="javascript:void(0);">로그인</a>
-      </li>
-      <li class="nav-item">
-        <a [hidden]="!auth.authenticated" class="nav-link" (click)="signOut()" href="javascript:void(0);">로그아웃</a>
-      </li>
-    </ul>
-  </div>
-</nav> -->
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
-  <a class="navbar-brand" href="javascript:void(0)"><img src="../assets/images/icon.png" style="width:40px;padding-right:10px;"/> 합격문</a>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+  <a class="navbar-brand" href="javascript:void(0)"><img [src]="img.icon" style="width:40px;padding-right:10px;margin-top:-3px;"/> 합격문</a>
   <ul class="navbar-nav ml-auto">
-    <li [hidden]="!isAdmin" class="nav-item">
-      <a class="nav-link" routerLink="admin"><img src="../assets/images/settings.svg">Admin</a>
-    </li>
     <li class="nav-item">
-      <a [hidden]="auth.authenticated" class="nav-link" (click)="signIn()" href="javascript:void(0);"><img src="../assets/images/signin.svg">로그인</a>
-    </li>
-    <li class="nav-item">
-      <a [hidden]="!auth.authenticated" class="nav-link" (click)="signOut()" href="javascript:void(0);"><img src="../assets/images/signout.svg">로그아웃</a>
+      <a class="nav-link" href="javascript:void(0)" (click)="goToAnchor('section_qna')"><i class="fa fa-question-circle-o" aria-hidden="true"></i> 문의하기</a>
     </li>
   </ul>
 </nav>
 
 <router-outlet></router-outlet>
-
-<!-- Button to Open the Modal -->
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-  Open modal
-</button>
-<button type="button" class="btn btn-primary" (click)="openModal()">Open modal</button>
--->
 
 <!-- The Modal -->
 <div class="modal fade" id="myModal" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">

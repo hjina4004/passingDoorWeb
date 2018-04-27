@@ -4,6 +4,8 @@ section {
   padding: 60px;
   line-height: 2em;
   .row {
+    margin-left: -10px;
+    margin-right: -10px;
     margin-bottom: 3em;
     .accent {color: #f8c163 !important;}
     .col-ord {
@@ -89,7 +91,7 @@ section {
   width: 500px;
   height: 500px;
   left: calc(50% - 250px);
-  bottom: 250px;
+  bottom: 160px;
   border-radius: 50%;
   z-index: 100;
   p {

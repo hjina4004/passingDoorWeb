@@ -11,6 +11,10 @@ import 'bootstrap';
 })
 export class AppComponent {
   title = '합격문 v1.0';
+  img = {
+    logo: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Flogo.png?alt=media",
+    icon: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Ficon.png?alt=media"
+  };
 
   constructor(
     public auth: AuthService
@@ -45,5 +49,10 @@ export class AppComponent {
     if (!this.auth.authState) { return false }
     else if (this.auth.currentUserInfo.level == '10')  { return true }
     return false;
+  }
+
+  goToAnchor(fragment): void {
+    var scmove = $('#'+fragment).offset().top;
+    $('html, body').animate({scrollTop : scmove}, 500);
   }
 }
