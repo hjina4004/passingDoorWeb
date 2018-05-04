@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>{{ title }}</h2>
+  <h2><br/>{{ title }}</h2>
 
   <div class="row">
     <div class="col-sm-3">
@@ -9,7 +9,7 @@
         <li [ngClass]="(stringCurrentMenu == 'notice')? 'active':''"><div class="div-link" (click)="goToMenu('notice')">공지 사항</div></li>
         <li [ngClass]="(stringCurrentMenu == 'usage')? 'active':''"><div class="div-link" (click)="goToMenu('usage')">이용 방법</div></li>
         <li [ngClass]="(stringCurrentMenu == 'qna')? 'active':''"><div class="div-link" (click)="goToMenu('qna')">1:1 질문</div></li>
-        <li [ngClass]="(stringCurrentMenu == 'problem')? 'active':''"><div class="div-link" (click)="goToMenu('problem')">기출 문제</div></li>
+        <!-- <li [ngClass]="(stringCurrentMenu == 'problem')? 'active':''"><div class="div-link" (click)="goToMenu('problem')">기출 문제</div></li> -->
       </ul>
     </div>
 
@@ -18,7 +18,7 @@
       <app-notice></app-notice>
       <!-- <app-notice-event></app-notice-event> -->
       <app-notice-usage></app-notice-usage>
-      <app-problem></app-problem>
+      <!-- <app-problem></app-problem> -->
       <app-qna></app-qna>
     </div>
   </div>

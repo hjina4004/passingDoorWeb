@@ -1,3 +1,10 @@
-<p>
-  login works!
-</p>
+<div class="login-page">
+  <h2>관리자 로그인</h2>
+  <div class="form">
+    <form class="login-form">
+      <input type="text" placeholder="username" [(ngModel)]="user.name" name="user_name"/>
+      <input type="password" placeholder="password" [(ngModel)]="user.password" name="user_password"/>
+      <button (click)="login()">login</button>
+    </form>
+  </div>
+</div>

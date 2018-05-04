@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './services/auth.service';
 import * as $ from 'jquery';
 import 'bootstrap';
+
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ export class AppComponent {
   };
 
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    private router: Router
   ) {
   }
 
@@ -45,9 +48,10 @@ export class AppComponent {
     this.auth.emit(data);
   }
 
-  get isAdmin(): boolean {
-    if (!this.auth.authState) { return false }
-    else if (this.auth.currentUserInfo.level == '10')  { return true }
+  get isShowNav(): boolean {
+    if (this.router.url == "/blog")
+      return true;
+
     return false;
   }
 

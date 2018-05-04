@@ -1,5 +1,6 @@
 export class AppService {
-  constructor() {}
+  private uid;
+  constructor() { this.uid = ""; }
 
   getDateWithUTCOffset(){
     const now = new Date(); // get the current time
@@ -10,4 +11,7 @@ export class AppService {
 
     return outputDate.toISOString().slice(0,19).replace("T", " ");
   }
+
+  setUID (uid) { this.uid = uid; }
+  get currentUID() { return this.uid; }
 }

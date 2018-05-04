@@ -1,4 +1,5 @@
-import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnInit, OnDestroy, Inject, Injectable } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
 
 import { AuthService } from '../services/auth.service';
 import { Router } from "@angular/router";
@@ -12,11 +13,13 @@ import { QnaComponent } from "./qna/qna.component"
 import { ProblemComponent } from "./problem/problem.component"
 
 
+const STORAGE_KEY = 'pure-awesomeness';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
 })
+@Injectable()
 export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(MemberComponent) memberComponent: MemberComponent;
   @ViewChild(NoticeComponent) noticeComponent: NoticeComponent;
@@ -29,8 +32,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   private currentMenu: BaseChild = null;
 
   constructor(
+    @Inject(SESSION_STORAGE) private storage: StorageService,
     private auth: AuthService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,7 +50,10 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   crrentAuthState() {
-    if (!this.auth.authenticated) {
+    // if (!this.auth.authenticated) {
+    const uid = this.storage.get(STORAGE_KEY) || "";
+    console.log("currentUID=", uid);
+    if (!uid) {
       this.router.navigate(['/']);
     }
   }

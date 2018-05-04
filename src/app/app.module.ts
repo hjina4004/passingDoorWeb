@@ -24,6 +24,7 @@ import { AppService } from './services/app.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     BrowserAnimationsModule,
     ToastModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    StorageServiceModule
   ],
   providers: [
     AuthService,
