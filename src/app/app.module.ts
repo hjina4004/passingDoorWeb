@@ -25,6 +25,9 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { StorageServiceModule} from 'angular-webstorage-service';
+import { UsersService } from './services/users.service';
+import { VersionComponent } from './admin/version/version.component';
+import { CouponComponent } from './admin/coupon/coupon.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { StorageServiceModule} from 'angular-webstorage-service';
     NoticeEventComponent,
     ProblemComponent,
     QnaComponent,
-    LoginComponent
+    LoginComponent,
+    VersionComponent,
+    CouponComponent
   ],
   imports: [
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
@@ -53,6 +58,7 @@ import { StorageServiceModule} from 'angular-webstorage-service';
   providers: [
     AuthService,
     AppService,
+    UsersService,
     AngularFireDatabase
   ],
   bootstrap: [ AppComponent ]

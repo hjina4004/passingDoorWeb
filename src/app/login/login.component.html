@@ -2,7 +2,7 @@
   <h2>관리자 로그인</h2>
   <div class="form">
     <form class="login-form">
-      <input type="text" placeholder="username" [(ngModel)]="user.name" name="user_name"/>
+      <input type="email" placeholder="email" [(ngModel)]="user.email" name="user_email"/>
       <input type="password" placeholder="password" [(ngModel)]="user.password" name="user_password"/>
       <button (click)="login()">login</button>
     </form>

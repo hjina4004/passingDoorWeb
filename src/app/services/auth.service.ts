@@ -130,7 +130,12 @@ export class AuthService {
       this.authState = user
       this.updateUserData()
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+
+      let data = {key: "message", value: error.message};
+      this.emit(data);
+    });
   }
 
   // Sends email allowing user to reset password

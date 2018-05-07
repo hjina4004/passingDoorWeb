@@ -1,12 +1,10 @@
-.list-member {
+.list-coupon {
+  .add-new-item, .form-add-coupon {margin-bottom: 10px;}
   .card {
     margin-bottom: 10px;
     .table {
       margin: 0;
       td:first-child {width:25%; background-color: WhiteSmoke;}
-    }
-    .table-sm {
-      th, td {padding-left: 12px;}
     }
   }
   .pagination {

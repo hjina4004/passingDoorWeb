@@ -1,0 +1,55 @@
+<div *ngIf="isShow" class="list-coupon">
+  <div class="row justify-content-end add-new-item">
+    <div class="col-sm-2 col-6">
+      <button [hidden]="modeAdd" type="button" class="btn btn-block btn-outline-success" (click)="prepareAddItem()">쿠폰 추가</button>
+    </div>
+  </div>
+
+  <div [hidden]="!modeAdd" class="form-control form-add-coupon">
+    <h2>쿠폰 추가</h2><br/>
+    <form action="return false;">
+      <div class="form-group">
+        <label for="code_number">쿠폰 번호:</label>
+        <input type="text" class="form-control" id="code_number" name="code_number" placeholder="번호을 입력하세요." [(ngModel)]="newCoupon.code_number" >
+      </div>
+      <div class="form-group text-right">
+        <button type="button" class="btn btn-success" (click)="addItem()">추가</button>
+        <button type="button" class="btn btn-outline-secondary" (click)="modeAdd = false;">취소</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngFor="let item of coupons">
+    <div class="card">
+      <div class="card-header bg-info text-white">
+        {{item.code_number}}
+      </div>
+      <div class="card-body">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>등록일</td><td>{{item.reg_date | date : "y년 M월 d일"}}</td>
+            </tr>
+            <tr>
+              <td>사용일</td><td>{{(item.use_date)? (item.use_date | date : "y년 M월 d일"):"사용하지 않았습니다."}}</td>
+            </tr>
+            <tr>
+              <td>사용 회원</td><td>{{(item.use_user)? item.use_user:"사용한 회원이 없습니다." }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3">
+      <button class="btn btn-block" (click)="onPrev()" *ngIf='prevKeys?.length'>Prev</button>
+    </div>
+    <div class="col-3 ml-auto">
+      <button class="btn btn-block" (click)="onNext()" *ngIf='nextKey'>Next</button>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+</div>

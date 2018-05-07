@@ -7,10 +7,10 @@ import { Router } from "@angular/router";
 import { BaseChild } from "./base-child"
 import { MemberComponent } from "./member/member.component"
 import { NoticeComponent } from "./notice/notice.component"
-// import { NoticeEventComponent } from "./notice-event/notice-event.component"
 import { NoticeUsageComponent } from "./notice-usage/notice-usage.component"
 import { QnaComponent } from "./qna/qna.component"
-import { ProblemComponent } from "./problem/problem.component"
+import { CouponComponent } from "./coupon/coupon.component"
+import { VersionComponent } from "./version/version.component"
 
 
 const STORAGE_KEY = 'pure-awesomeness';
@@ -23,10 +23,10 @@ const STORAGE_KEY = 'pure-awesomeness';
 export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(MemberComponent) memberComponent: MemberComponent;
   @ViewChild(NoticeComponent) noticeComponent: NoticeComponent;
-  // @ViewChild(NoticeEventComponent) noticeEventComponent: NoticeEventComponent;
   @ViewChild(NoticeUsageComponent) noticeUsageComponent: NoticeUsageComponent;
   @ViewChild(QnaComponent) qnaComponent: QnaComponent;
-  @ViewChild(ProblemComponent) problemComponent: ProblemComponent;
+  @ViewChild(CouponComponent) couponComponent: CouponComponent;
+  @ViewChild(VersionComponent) versionComponent: VersionComponent;
 
   title = "합격문 관리자";
   private currentMenu: BaseChild = null;
@@ -67,18 +67,22 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     if (menu == 'member') {
       this.currentMenu = this.memberComponent;
-    // } else if (menu == 'event') {
-    //   this.currentMenu = this.noticeEventComponent;
     } else if (menu == 'notice') {
       this.currentMenu = this.noticeComponent;
     } else if (menu == 'usage') {
       this.currentMenu = this.noticeUsageComponent;
     } else if (menu == 'qna') {
       this.currentMenu = this.qnaComponent;
-    } else if (menu == 'problem') {
-      this.currentMenu = this.problemComponent;
+    } else if (menu == 'coupon') {
+      this.currentMenu = this.couponComponent;
+    } else if (menu == 'version') {
+      this.currentMenu = this.versionComponent;
     }
 
     this.currentMenu.show(true);
+  }
+
+  logout() {
+    this.auth.signOut();
   }
 }

@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as firebase from 'firebase';
 
+import { AuthService } from '../services/auth.service';
+
 const STORAGE_KEY = 'pure-awesomeness';
 @Component({
   selector: 'app-login',
@@ -13,13 +15,15 @@ const STORAGE_KEY = 'pure-awesomeness';
 })
 @Injectable()
 export class LoginComponent implements OnInit {
-  user = {name:"", password:""};
-  dataManager = {name:"", password:""};
+  user = {email:"", password:""};
+  dataManager = {email:""};
+  private subscription: any;
 
   constructor(
     @Inject(SESSION_STORAGE) private storage: StorageService,
     private toastr: ToastsManager,
     private vcr: ViewContainerRef,
+    private auth: AuthService,
     private router: Router
   ) {
     this.toastr.setRootViewContainerRef(vcr);
@@ -27,26 +31,39 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.infoManager();
+    this.subscription = this.auth.emitChange.subscribe(data => {
+      this.responseDialog(data);
+    });
+  }
+
+  responseDialog(data) {
+    console.log(data);
+    if (data && data.key == "authState" && data.value) {
+      this.router.navigate(['/admin']);
+      this.subscription.unsubscribe();
+    } else if (data && data.key == "message" && data.value) {
+      this.toastr.warning(data.value, null);
+    }
   }
 
   login() {
-    if (this.user.name != this.dataManager.name || this.user.password != this.dataManager.password) {
+    if (this.user.email != this.dataManager.email) {
       this.toastr.warning('아이디와 비밀번호를 확인하십시오.', null);
       return;
     }
 
-    this.storage.set(STORAGE_KEY, this.user.name);
-    this.router.navigate(['/'+this.user.name]);
+    this.auth.emailLogin(this.user.email, this.user.password);
+    this.storage.set(STORAGE_KEY, this.user.email);
   }
 
   infoManager() {
     firebase.database().ref('/manager').once('value').then((snapshot) => {
+      console.log("manager:", ...snapshot.val());
       this.allocateManager(snapshot.val());
     });
   }
 
   allocateManager(data) {
-    this.dataManager.name = data.name;
-    this.dataManager.password = data.password;
+    this.dataManager.email = data.email;
   }
 }

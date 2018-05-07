@@ -1,0 +1,18 @@
+<div *ngIf="isShow" class="list-version">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>앱 버젼</td><td>{{infoVersion.app_version}}</td>
+      </tr>
+      <tr>
+        <td>기출문제 버젼</td><td>{{infoVersion.problem_version | date : "y년 M월 d일  HH시 m분 s초"}}</td>
+      </tr>
+      <tr>
+        <td>신규 회원 무료 체험일</td><td>{{infoVersion.free_ticket_day}} 일</td>
+      </tr>
+      <tr>
+        <td>사용권 만료일</td><td>{{infoVersion.ticket_end_date | date : "y년 M월 d일"}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
