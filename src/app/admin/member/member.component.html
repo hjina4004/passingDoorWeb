@@ -1,39 +1,20 @@
 <div *ngIf="isShow" class="list-member">
-  <div *ngFor="let user of users">
-    <div class="card">
-      <div class="card-header bg-info text-white">
-        <strong>{{user.display_name}}</strong> (key: {{user.key}})
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <td>닉네임</td><td>{{user.display_name}}</td>
-            </tr>
-            <tr>
-              <td>이메일</td><td>{{user.email}}</td>
-            </tr>
-            <tr>
-              <td>최근 방문일</td><td>{{user.last_login | date : "y년 M월 d일 a h시 mm분" }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div><br/>과목별 사용권 현황</div>
-        <table class="table table-sm table-bordered">
-          <thead class="thead-light">
-            <tr><th>과목</th><th>만료 일자</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>부동산학 개론</td><td>{{(user.ticket && user.ticket.ticket_re)? (user.ticket.ticket_re.expiry_date | date : "y년 M월 d일"):none_ticket }}</td></tr>
-            <tr><td>민법 및 민사 특별법</td><td>{{(user.ticket && user.ticket.ticket_cl)? (user.ticket.ticket_cl.expiry_date | date : "y년 M월 d일"):none_ticket }}</td></tr>
-            <tr><td>중개사 법령 및 실무</td><td>{{(user.ticket && user.ticket.ticket_bs)? (user.ticket.ticket_bs.expiry_date | date : "y년 M월 d일"):none_ticket }}</td></tr>
-            <tr><td>부동산 공법</td><td>{{(user.ticket && user.ticket.ticket_pl)? (user.ticket.ticket_pl.expiry_date | date : "y년 M월 d일"):none_ticket }}</td></tr>
-            <tr><td>공시법 및 세법</td><td>{{(user.ticket && user.ticket.ticket_dtl)? (user.ticket.ticket_dtl.expiry_date | date : "y년 M월 d일"):none_ticket }}</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>닉네임</th>
+        <th>이메일</th>
+        <th>최근 방문일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" (click)="tableTicket(user)">
+        <td>{{user.display_name}}<br/>(key: {{user.key}})</td>
+        <td>{{user.email}}</td>
+        <td>{{user.last_login | date : "y-MM-dd hh:mm:ss" }}</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="row">
     <div class="col-3">
@@ -43,6 +24,4 @@
       <button class="btn btn-block" (click)="onNext()" *ngIf='nextKey'>Next</button>
     </div>
   </div>
-
-  <p>&nbsp;</p>
 </div>

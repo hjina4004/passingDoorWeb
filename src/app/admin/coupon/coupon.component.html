@@ -19,28 +19,24 @@
     </form>
   </div>
 
-  <div *ngFor="let item of coupons">
-    <div class="card">
-      <div class="card-header bg-info text-white">
-        {{item.code_number}}
-      </div>
-      <div class="card-body">
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <td>등록일</td><td>{{item.reg_date | date : "y년 M월 d일"}}</td>
-            </tr>
-            <tr>
-              <td>사용일</td><td>{{(item.use_date)? (item.use_date | date : "y년 M월 d일"):"사용하지 않았습니다."}}</td>
-            </tr>
-            <tr>
-              <td>사용 회원</td><td>{{(item.use_user)? item.use_user:"사용한 회원이 없습니다." }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>쿠폰번호</th>
+        <th>등록일</th>
+        <th>사용 회원</th>
+        <th>사용일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of coupons">
+        <td>{{item.code_number}}</td>
+        <td>{{item.reg_date}}</td>
+        <td>{{item.use_user}}</td>
+        <td>{{item.use_date}}</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="row">
     <div class="col-3">

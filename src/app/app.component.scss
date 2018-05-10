@@ -14,3 +14,17 @@ a.nav-link {
     margin: 0 10px 2px;
   }
 }
+
+.hide {display: none !important;}
+
+.modal-body {
+  .table {
+    tbody {
+      tr {
+        td {
+          padding: 0 12px;
+        }
+      }
+    }
+  }
+}

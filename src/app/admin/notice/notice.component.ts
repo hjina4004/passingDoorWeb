@@ -130,6 +130,9 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   deleteItem(item) {
+    if (!item)
+      return;
+
     console.log("deleteItem", item);
     const itemsRef = this.afDB.list('/notice');
     itemsRef.remove(item.key);

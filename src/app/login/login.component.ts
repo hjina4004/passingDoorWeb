@@ -31,16 +31,20 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.infoManager();
-    this.subscription = this.auth.emitChange.subscribe(data => {
-      this.responseDialog(data);
-    });
   }
 
   responseDialog(data) {
     console.log(data);
     if (data && data.key == "authState" && data.value) {
+      if (this.auth.currentUserEmail == this.dataManager.email) {
+        this.storage.set(STORAGE_KEY, this.dataManager.email);
+      } else {
+        this.auth.signOut();
+        return;
+      }
+
       this.router.navigate(['/admin']);
-      this.subscription.unsubscribe();
+      if (this.subscription) this.subscription.unsubscribe();
     } else if (data && data.key == "message" && data.value) {
       this.toastr.warning(data.value, null);
     }
@@ -65,5 +69,8 @@ export class LoginComponent implements OnInit {
 
   allocateManager(data) {
     this.dataManager.email = data.email;
+    this.subscription = this.auth.emitChange.subscribe(data => {
+      this.responseDialog(data);
+    });
   }
 }

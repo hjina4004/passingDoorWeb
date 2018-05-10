@@ -19,7 +19,7 @@ export class CouponComponent extends BaseChild implements OnInit, OnDestroy {
   private modeAdd = false;
   private newCoupon = {} as ICoupon;
 
-  numberItems = 3;
+  numberItems = 15;
   nextKey: any;
   prevKeys: any[] = [];
   subscription: any;
