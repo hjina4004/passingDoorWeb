@@ -15,11 +15,13 @@ export class BlogComponent implements OnInit, OnDestroy {
   itemQnA = {name:"", phone:"", content:""};
   img = {
     intro: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-intro.png?alt=media",
+    main: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-main.png?alt=media",
     keyword: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-keyword.png?alt=media",
     note: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-note.png?alt=media",
     problem_status: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-problem-status.png?alt=media",
     problem: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-problem.png?alt=media",
     search: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-search.png?alt=media",
+    year: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-year.png?alt=media",
     solve: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-solve.png?alt=media",
     study_graph: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-study-graph.png?alt=media",
     study_status: "https://firebasestorage.googleapis.com/v0/b/passingdoor-f3b31.appspot.com/o/images%2Fscreen-study-status.png?alt=media",
