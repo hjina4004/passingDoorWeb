@@ -1,0 +1,17 @@
+<div *ngIf="isShow" class="list-coupon">
+  <form action="return false">
+    <div class="form-group">
+      <label for="fcm_title">제목:</label>
+      <input type="text" class="form-control" id="fcm_title" placeholder="제목을 입력하세요" name="fcm_title" [(ngModel)]="fcmData.data.title">
+    </div>
+    <div class="form-group">
+      <label for="fcm_message">내용:</label>
+      <input type="text" class="form-control" id="fcm_message" placeholder="내용을 입력하세요" name="fcm_message" [(ngModel)]="fcmData.data.message">
+    </div>
+    <div class="form-group">
+      <label for="fcm_page">이동 페이지:</label>
+      <input type="text" class="form-control" id="fcm_page" name="fcm_page" [(ngModel)]="fcmData.data.page">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="sendMessage()">메시지 보내기</button>
+  </form>
+</div>

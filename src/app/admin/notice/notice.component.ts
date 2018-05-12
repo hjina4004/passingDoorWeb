@@ -48,9 +48,9 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("NoticeComponent - ngOnDestroy ...");
+    // console.log("NoticeComponent - ngOnDestroy ...");
     this.subscription.unsubscribe();
-    console.log("NoticeComponent - ngOnDestroy done");
+    // console.log("NoticeComponent - ngOnDestroy done");
   }
 
   loadData() {
@@ -61,7 +61,7 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   responseDialog(data) {
-    console.log(data);
+    // console.log(data);
     if (data && data.key == "prepareDeleteItem" && data.value) {
       this.deleteItem(this.selectedItem);
     }
@@ -133,7 +133,7 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
     if (!item)
       return;
 
-    console.log("deleteItem", item);
+    // console.log("deleteItem", item);
     const itemsRef = this.afDB.list('/notice');
     itemsRef.remove(item.key);
   }

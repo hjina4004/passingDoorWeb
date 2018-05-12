@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   responseDialog(data) {
-    console.log(data);
+    // console.log(data);
     if (data && data.key == "authState" && data.value) {
       if (this.auth.currentUserEmail == this.dataManager.email) {
         this.storage.set(STORAGE_KEY, this.dataManager.email);
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   infoManager() {
     firebase.database().ref('/manager').once('value').then((snapshot) => {
-      console.log("manager:", ...snapshot.val());
+      // console.log("manager:", ...snapshot.val());
       this.allocateManager(snapshot.val());
     });
   }

@@ -28,6 +28,8 @@ import { StorageServiceModule} from 'angular-webstorage-service';
 import { UsersService } from './services/users.service';
 import { VersionComponent } from './admin/version/version.component';
 import { CouponComponent } from './admin/coupon/coupon.component';
+import { FcmComponent } from './admin/fcm/fcm.component';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { CouponComponent } from './admin/coupon/coupon.component';
     QnaComponent,
     LoginComponent,
     VersionComponent,
-    CouponComponent
+    CouponComponent,
+    FcmComponent
   ],
   imports: [
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
@@ -53,7 +56,8 @@ import { CouponComponent } from './admin/coupon/coupon.component';
     BrowserAnimationsModule,
     ToastModule.forRoot(),
     AppRoutingModule,
-    StorageServiceModule
+    StorageServiceModule,
+    HttpModule
   ],
   providers: [
     AuthService,

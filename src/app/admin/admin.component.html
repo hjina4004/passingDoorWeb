@@ -10,6 +10,7 @@
         <li [ngClass]="(stringCurrentMenu == 'qna')? 'active':''"><div class="div-link" (click)="goToMenu('qna')">1:1 질문</div></li>
         <li [ngClass]="(stringCurrentMenu == 'coupon')? 'active':''"><div class="div-link" (click)="goToMenu('coupon')">쿠폰정보</div></li>
         <li [ngClass]="(stringCurrentMenu == 'version')? 'active':''"><div class="div-link" (click)="goToMenu('version')">버젼정보</div></li>
+        <li [ngClass]="(stringCurrentMenu == 'fcm')? 'active':''"><div class="div-link" (click)="goToMenu('fcm')">메시지 보내기</div></li>
         <li [ngClass]="(stringCurrentMenu == 'logout')? 'active':''"><div class="div-link" (click)="logout()">로그아웃</div></li>
       </ul>
     </div>
@@ -21,6 +22,7 @@
       <app-qna></app-qna>
       <app-coupon></app-coupon>
       <app-version></app-version>
+      <app-fcm></app-fcm>
     </div>
   </div>
 </div>

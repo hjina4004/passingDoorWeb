@@ -46,9 +46,9 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("QnaComponent - ngOnDestroy ...");
+    // console.log("QnaComponent - ngOnDestroy ...");
     this.subscription.unsubscribe();
-    console.log("QnaComponent - ngOnDestroy done");
+    // console.log("QnaComponent - ngOnDestroy done");
   }
 
   loadData() {
@@ -59,7 +59,7 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   responseDialog(data) {
-    console.log(data);
+    // console.log(data);
     if (data && data.key == "prepareDeleteItem" && data.value) {
       this.deleteItem(this.selectedItem);
     }
@@ -67,7 +67,7 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
 
   expandItem(item) {
     item.expanded = !item.expanded;
-    console.log("item:", item);
+    // console.log("item:", item);
   }
 
   prepareDeleteItem(item, ev) {
@@ -79,7 +79,7 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   deleteItem(item) {
-    console.log("deleteItem", item);
+    // console.log("deleteItem", item);
     const itemsRef = this.afDB.list('/qna');
     itemsRef.remove(item.key);
   }

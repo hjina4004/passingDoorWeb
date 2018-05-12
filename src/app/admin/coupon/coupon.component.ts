@@ -61,7 +61,7 @@ export class CouponComponent extends BaseChild implements OnInit, OnDestroy {
       this.coupons = ARR.slice(map.map(value => ({key: value.key, ...value.payload.val()})), 0, this.numberItems);
       this.nextKey = ARR.get(map[this.numberItems], 'key');
 
-      console.log("nextKey:", this.nextKey);
+      // console.log("nextKey:", this.nextKey);
     });
   }
 

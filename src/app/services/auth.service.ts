@@ -24,7 +24,7 @@ export class AuthService {
     private router:Router) {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
-      console.log("AuthService authState: ", auth);
+      // console.log("AuthService authState: ", auth);
       let data = {key: "authState", value: this.authenticated};
       this.emit(data);
     });

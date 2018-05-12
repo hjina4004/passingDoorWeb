@@ -48,9 +48,9 @@ export class NoticeUsageComponent extends BaseChild implements OnInit, OnDestroy
   }
 
   ngOnDestroy() {
-    console.log("NoticeUsageComponent - ngOnDestroy ...");
+    // console.log("NoticeUsageComponent - ngOnDestroy ...");
     this.subscription.unsubscribe();
-    console.log("NoticeUsageComponent - ngOnDestroy done");
+    // console.log("NoticeUsageComponent - ngOnDestroy done");
   }
 
   loadData() {
@@ -61,7 +61,7 @@ export class NoticeUsageComponent extends BaseChild implements OnInit, OnDestroy
   }
 
   responseDialog(data) {
-    console.log(data);
+    // console.log(data);
     if (data && data.key == "prepareDeleteItem" && data.value) {
       this.deleteItem(this.selectedItem);
     }
@@ -132,8 +132,8 @@ export class NoticeUsageComponent extends BaseChild implements OnInit, OnDestroy
   deleteItem(item) {
     if (!item)
       return;
-      
-    console.log("deleteItem", item);
+
+    // console.log("deleteItem", item);
     const itemsRef = this.afDB.list('/usage');
     itemsRef.remove(item.key);
   }

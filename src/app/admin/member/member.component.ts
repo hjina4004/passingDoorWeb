@@ -18,7 +18,7 @@ export class MemberComponent extends BaseChild implements OnInit {
   nextKey: any;
   prevKeys: any[] = [];
   subscription: any;
-  none_ticket = "사용권이 없습니다.";
+  none_ticket = "이용권이 없습니다.";
 
   constructor(
     private datePipe: DatePipe,
@@ -40,7 +40,7 @@ export class MemberComponent extends BaseChild implements OnInit {
         this.users = ARR.slice(map.map(value => ({key: value.key, ...value.payload.val()})), 0, this.numberItems);
         this.nextKey = ARR.get(map[this.numberItems], 'key');
 
-        console.log("nextKey:", this.nextKey);
+        // console.log("nextKey:", this.nextKey);
       });
   }
 
@@ -57,16 +57,16 @@ export class MemberComponent extends BaseChild implements OnInit {
   }
 
   tableTicket(user) {
-    let str = "<table class='table table-bordered'><tbody>";
-
+    let title = user.display_name + " (" + user.key + ")";
+    let str = "<p>과목별 이용권</p><table class='table table-bordered'><tbody>";
     str += "<tr><td>부동산학 개론</td><td>" + this.getTicketDate(user.ticket.ticket_re) + "</td></tr>";
     str += "<tr><td>민법 및 민사 특별법</td><td>" + this.getTicketDate(user.ticket.ticket_cl) + "</td></tr>";
     str += "<tr><td>중개사 법령 및 실무</td><td>" + this.getTicketDate(user.ticket.ticket_bs) + "</td></tr>";
     str += "<tr><td>부동산 공법</td><td>" + this.getTicketDate(user.ticket.ticket_pl) + "</td></tr>";
     str += "<tr><td>공시법 및 세법</td><td>" + this.getTicketDate(user.ticket.ticket_dtl) + "</td></tr>";
-
     str += "</tbody></table>";
-    this.showModal({title:"과목별 사용권 만료일", message:str});
+
+    this.showModal({title:title, message:str});
   }
 
   getTicketDate(ticket) {

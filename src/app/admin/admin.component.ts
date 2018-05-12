@@ -11,6 +11,7 @@ import { NoticeUsageComponent } from "./notice-usage/notice-usage.component"
 import { QnaComponent } from "./qna/qna.component"
 import { CouponComponent } from "./coupon/coupon.component"
 import { VersionComponent } from "./version/version.component"
+import { FcmComponent } from "./fcm/fcm.component"
 
 
 const STORAGE_KEY = 'pure-awesomeness';
@@ -27,6 +28,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   @ViewChild(QnaComponent) qnaComponent: QnaComponent;
   @ViewChild(CouponComponent) couponComponent: CouponComponent;
   @ViewChild(VersionComponent) versionComponent: VersionComponent;
+  @ViewChild(FcmComponent) fcmComponent: FcmComponent;
 
   title = "합격문 관리자";
   private currentMenu: BaseChild = null;
@@ -38,7 +40,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    console.log("admin - ngOnInit done");
+    // console.log("admin - ngOnInit done");
 
     this.crrentAuthState();
     this.currentMenu = this.memberComponent;
@@ -46,13 +48,13 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("admin - ngOnDestroy done");
+    // console.log("admin - ngOnDestroy done");
   }
 
   crrentAuthState() {
     // if (!this.auth.authenticated) {
     const uid = this.storage.get(STORAGE_KEY) || "";
-    console.log("currentUID=", uid);
+    // console.log("currentUID=", uid);
     if (!uid) {
       this.router.navigate(['/']);
     }
@@ -77,6 +79,8 @@ export class AdminComponent implements OnInit, OnDestroy {
       this.currentMenu = this.couponComponent;
     } else if (menu == 'version') {
       this.currentMenu = this.versionComponent;
+    } else if (menu == 'fcm') {
+      this.currentMenu = this.fcmComponent;
     }
 
     this.currentMenu.show(true);
