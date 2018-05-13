@@ -10,7 +10,7 @@ export class UsersService {
 
   constructor(private db: AngularFireDatabase) { }
 
-  getUsers(numberItems, startKey?, orderBy?): AngularFireList<IUserInfo> {
+  getUsers(numberItems, startKey?, orderBy?, endKey?): AngularFireList<IUserInfo> {
     if (startKey === undefined || startKey == null) {
       if (orderBy === undefined || orderBy == null || orderBy == "key")
         this.users = this.db.list(this.dbPath, ref => ref.orderByKey().limitToFirst(numberItems + 1));
@@ -23,6 +23,8 @@ export class UsersService {
         this.users = this.db.list(this.dbPath, ref => ref.orderByKey().startAt(startKey).limitToFirst(numberItems + 1));
       else if (orderBy == "last_login")
         this.users = this.db.list(this.dbPath, ref => ref.orderByChild(orderBy).endAt(startKey).limitToLast(numberItems + 1));
+      else if (endKey)
+        this.users = this.db.list(this.dbPath, ref => ref.orderByChild(orderBy).startAt(startKey).endAt(endKey).limitToFirst(numberItems + 1));
       else
         this.users = this.db.list(this.dbPath, ref => ref.orderByChild(orderBy).startAt(startKey).limitToFirst(numberItems + 1));
     }

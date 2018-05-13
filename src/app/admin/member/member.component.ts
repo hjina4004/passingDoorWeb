@@ -25,6 +25,8 @@ export class MemberComponent extends BaseChild implements OnInit {
   selected_ticket = '';
 
   currentSortBy = "key";
+  s_email = "";
+  s_display_name = "";
 
   constructor(
     private datePipe: DatePipe,
@@ -41,7 +43,15 @@ export class MemberComponent extends BaseChild implements OnInit {
     if (this.subscription)
       this.subscription.unsubscribe();
 
-    this.subscription = this.usersService.getUsers(this.numberItems, key, this.currentSortBy).snapshotChanges()
+    let keyEnd = null;
+    if (this.currentSortBy == 'email' && key == undefined) {
+      key = this.s_email;
+      keyEnd = this.s_email + "\uf8ff";
+    } else if (this.currentSortBy == 'display_name' && key == undefined) {
+      key = this.s_display_name;
+      keyEnd = this.s_display_name + "\uf8ff";
+    }
+    this.subscription = this.usersService.getUsers(this.numberItems, key, this.currentSortBy, keyEnd).snapshotChanges()
       .subscribe(map => {
         let data = map.map(value => ({key: value.key, ...value.payload.val()}));
         if (this.currentSortBy == "last_login")
@@ -127,7 +137,11 @@ export class MemberComponent extends BaseChild implements OnInit {
 
     this.currentSortBy = sortBy;
     this.prevKeys = [];
+    this.getUsersList();
+  }
 
+  dataChanged(newObj) {
+    this.prevKeys = [];
     this.getUsersList();
   }
 }

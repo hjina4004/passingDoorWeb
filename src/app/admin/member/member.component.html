@@ -1,4 +1,12 @@
 <div *ngIf="isShow" class="list-member">
+  <form *ngIf="currentSortBy == 'email'" class="form-inline" action="return false">
+    <label for="s_email">검색 이메일:&nbsp;&nbsp;</label>
+    <input type="email" class="form-control" id="s_email" name="s_email" [(ngModel)]="s_email" (ngModelChange)="dataChanged($event)">
+  </form>
+  <form *ngIf="currentSortBy == 'display_name'" class="form-inline" action="return false">
+    <label for="s_display_name">검색 닉네임:&nbsp;&nbsp;</label>
+    <input type="text" class="form-control" id="s_display_name" name="s_display_name" [(ngModel)]="s_display_name" (ngModelChange)="dataChanged($event)">
+  </form>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
