@@ -28,12 +28,30 @@ export class BaseChild {
     $('#btn-modal-ok').removeClass('hide');
     $('#btn-modal-cancel').removeClass('hide');
 
+    $('#btn-modal-ok').text('확인');
+    $('#btn-modal-cancel').text('취소');
+
     if (data.type)  $('#myModal').find('.modal-type').val(data.type);
     else            $('#myModal').find('.modal-type').val('');
   }
 
   showModal(data) {
     this.showConfirmModal(data);
-    $('#btn-modal-cancel').addClass('hide');
+    $('#btn-modal-ok').addClass('hide');
+    $('#btn-modal-cancel').text('확인');
+  }
+  hideModal() {
+    $('#myModal').modal('hide');
+  }
+
+  buttonModal(data) {
+    if (data.btn_ok) {
+      $('#btn-modal-ok').removeClass('hide');
+      $('#btn-modal-ok').text(data.btn_ok);
+    }
+    if (data.btn_cancel) {
+      $('#btn-modal-cancel').removeClass('hide');
+      $('#btn-modal-cancel').text(data.btn_cancel);
+    }
   }
 }

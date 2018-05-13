@@ -23,4 +23,9 @@ export class UsersService {
 
     return this.users;
   }
+
+  updateUser(data) {
+    const itemsRef = this.db.object(this.dbPath+"/"+data.key+"/ticket");
+    itemsRef.set(data.ticket);
+  }
 }
