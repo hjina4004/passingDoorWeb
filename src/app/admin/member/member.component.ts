@@ -24,6 +24,8 @@ export class MemberComponent extends BaseChild implements OnInit {
   selected_user = null;
   selected_ticket = '';
 
+  currentSortBy = "key";
+
   constructor(
     private datePipe: DatePipe,
     private usersService:UsersService
@@ -39,17 +41,21 @@ export class MemberComponent extends BaseChild implements OnInit {
     if (this.subscription)
       this.subscription.unsubscribe();
 
-    this.subscription = this.usersService.getUsers(this.numberItems, key).snapshotChanges()
+    this.subscription = this.usersService.getUsers(this.numberItems, key, this.currentSortBy).snapshotChanges()
       .subscribe(map => {
-        this.users = ARR.slice(map.map(value => ({key: value.key, ...value.payload.val()})), 0, this.numberItems);
-        this.nextKey = ARR.get(map[this.numberItems], 'key');
+        let data = map.map(value => ({key: value.key, ...value.payload.val()}));
+        if (this.currentSortBy == "last_login")
+          data = this.reverseObject(data);
+        this.users = ARR.slice(data, 0, this.numberItems);
+        this.nextKey = ARR.get(data[this.numberItems], this.currentSortBy);
 
+        // console.log("data:", data[this.numberItems]);
         // console.log("nextKey:", this.nextKey);
       });
   }
 
   onNext() {
-    this.prevKeys.push(ARR.first(this.users)['key']);
+    this.prevKeys.push(ARR.first(this.users)[this.currentSortBy]);
     this.getUsersList(this.nextKey);
   }
 
@@ -112,5 +118,16 @@ export class MemberComponent extends BaseChild implements OnInit {
       this.usersService.updateUser(this.selected_user);
     }
     this.hideModal();
+  }
+
+  sortTable(sortBy) {
+    if (this.currentSortBy == sortBy) {
+      return;
+    }
+
+    this.currentSortBy = sortBy;
+    this.prevKeys = [];
+
+    this.getUsersList();
   }
 }

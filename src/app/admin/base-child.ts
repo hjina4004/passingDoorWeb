@@ -54,4 +54,10 @@ export class BaseChild {
       $('#btn-modal-cancel').text(data.btn_cancel);
     }
   }
+
+  reverseObject(snapshot) {
+    var children = [];
+    snapshot.forEach(function (child) { children.unshift(child); });
+    return children;
+  }
 }

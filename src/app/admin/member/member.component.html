@@ -2,9 +2,9 @@
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>닉네임</th>
-        <th>이메일</th>
-        <th>최근 방문일</th>
+        <th (click)="sortTable('display_name')">닉네임</th>
+        <th (click)="sortTable('email')">이메일</th>
+        <th (click)="sortTable('last_login')">최근 방문일</th>
       </tr>
     </thead>
     <tbody>
