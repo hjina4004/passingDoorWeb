@@ -7,5 +7,14 @@ $icon-font-path: '../node_modules/bootstrap/scss/bootstrap';
 
 .item-title {
   position: relative;;
-  div{display: inline-block; max-width: calc(100% - 200px);}
+  div{
+    display: block;
+    width: calc(100%);
+    max-width: calc(100%);
+    table {
+      width: 100%;
+      max-width: 100%;
+      td:last-child {font-size:0.875em;}
+    }
+  }
 }
