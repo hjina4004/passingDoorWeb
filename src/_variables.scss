@@ -4,3 +4,8 @@ $primary-color: $primary;
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 $icon-font-path: '../node_modules/bootstrap/scss/bootstrap';
+
+.item-title {
+  position: relative;;
+  div{display: inline-block; max-width: calc(100% - 200px);}
+}

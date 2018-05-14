@@ -25,6 +25,10 @@ export class CouponComponent extends BaseChild implements OnInit, OnDestroy {
   subscription: any;
 
   coupons: AngularFireList<ICoupon[]>;
+  currentSortBy = "key";
+  s_use_user = "";
+  s_use_date = "";
+  s_message = "";
 
   constructor(
     private toastr: ToastsManager,
@@ -43,30 +47,38 @@ export class CouponComponent extends BaseChild implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  getCouponList(key?) {
+  getCouponList(key?, endKey?) {
     if (this.subscription)
       this.subscription.unsubscribe();
 
-    let observaberCoupon: any;
+    let observaberCoupon;
     if (key === undefined) {
-      observaberCoupon = this.afDB.list(this.dbPath, ref =>
-        ref.orderByKey().limitToFirst(this.numberItems + 1)
-      );
+      if (this.currentSortBy == "key") {
+        observaberCoupon = this.afDB.list(this.dbPath, ref => ref.orderByKey().limitToFirst(this.numberItems + 1));
+      } else {
+        observaberCoupon = this.afDB.list(this.dbPath, ref => ref.orderByChild(this.currentSortBy).limitToFirst(this.numberItems + 1));
+      }
     } else {
-      observaberCoupon = this.afDB.list(this.dbPath, ref =>
-        ref.orderByKey().startAt(key).limitToFirst(this.numberItems + 1)
-      );
+      if (this.currentSortBy == "key") {
+        observaberCoupon = this.afDB.list(this.dbPath, ref => ref.orderByKey().startAt(key).limitToFirst(this.numberItems + 1));
+      } else if (endKey) {
+        observaberCoupon = this.afDB.list(this.dbPath, ref => ref.orderByChild(this.currentSortBy).startAt(key).endAt(endKey).limitToFirst(this.numberItems + 1));
+      } else {
+        observaberCoupon = this.afDB.list(this.dbPath, ref => ref.orderByChild(this.currentSortBy).startAt(key).limitToFirst(this.numberItems + 1));
+      }
     }
     this.subscription = observaberCoupon.snapshotChanges().subscribe(map => {
-      this.coupons = ARR.slice(map.map(value => ({key: value.key, ...value.payload.val()})), 0, this.numberItems);
-      this.nextKey = ARR.get(map[this.numberItems], 'key');
+      let data = map.map(value => ({key: value.key, ...value.payload.val()}));
+      this.coupons = ARR.slice(data, 0, this.numberItems);
+      this.nextKey = ARR.get(data[this.numberItems], this.currentSortBy);
 
+      this.s_message = "";
       // console.log("nextKey:", this.nextKey);
     });
   }
 
   onNext() {
-    this.prevKeys.push(ARR.first(this.coupons)['key']);
+    this.prevKeys.push(ARR.first(this.coupons)[this.currentSortBy]);
     this.getCouponList(this.nextKey);
   }
 
@@ -98,5 +110,28 @@ export class CouponComponent extends BaseChild implements OnInit, OnDestroy {
     itemsRef.push(this.newCoupon);
 
     this.modeAdd = false;
+  }
+
+  sortTable(sortBy) {
+    if (this.currentSortBy == sortBy) {
+      return;
+    }
+
+    this.currentSortBy = sortBy;
+    this.prevKeys = [];
+    this.getCouponList();
+  }
+
+  dataChanged(newObj) {
+    let startKey = this.s_use_user;
+    let endKey = this.s_use_user + "\uf8ff";
+    if (this.currentSortBy == "use_date") {
+      startKey = this.s_use_date;
+      endKey = this.s_use_date + "\uf8ff";
+    }
+    this.s_message = "검색 중입니다."
+
+    this.prevKeys = [];
+    this.getCouponList(startKey, endKey);
   }
 }

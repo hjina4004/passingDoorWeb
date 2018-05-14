@@ -26,6 +26,7 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
   private newItem = {} as IQnA;
 
   qnas: Observable<IQnA[]>;
+  s_writer = "";
 
   constructor(
     private toastr: ToastsManager,
@@ -52,7 +53,9 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   loadData() {
-    const itemsRef = this.afDB.list('/qna');
+    let startValue = this.s_writer;
+    let endValue = startValue + "\uf8ff";
+    const itemsRef = this.afDB.list('/qna', ref => ref.orderByChild('writer').startAt(startValue).endAt(endValue));
     this.qnas = itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({key: c.key,  ...c.payload.val(), expanded: false, editing: false, editedContent:'' }));
     });
@@ -134,5 +137,9 @@ export class QnaComponent extends BaseChild implements OnInit, OnDestroy {
     }
 
     return "답변 쓰기";
+  }
+
+  dataChanged(newObj) {
+    this.loadData();
   }
 }

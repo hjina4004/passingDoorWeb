@@ -22,4 +22,11 @@
       }
     }
   }
+  .form-inline {
+    margin-bottom: 10px;
+    .pending-message {
+      margin-left: 10px;
+      color: red;
+    }
+  }
 }

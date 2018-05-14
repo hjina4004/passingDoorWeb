@@ -19,13 +19,23 @@
     </form>
   </div>
 
+  <form *ngIf="currentSortBy == 'use_user'" class="form-inline" action="return false">
+    <label for="s_use_user">검색 사용 회원:&nbsp;&nbsp;</label>
+    <input type="text" class="form-control" id="s_use_user" name="s_use_user" [(ngModel)]="s_use_user" (ngModelChange)="dataChanged($event)">
+    <span class="pending-message">{{s_message}}</span>
+  </form>
+  <form *ngIf="currentSortBy == 'use_date'" class="form-inline" action="return false">
+    <label for="s_use_date">검색 사용일:&nbsp;&nbsp;</label>
+    <input type="text" class="form-control" id="s_use_date" name="s_use_date" [(ngModel)]="s_use_date" (ngModelChange)="dataChanged($event)">
+    <span class="pending-message">{{s_message}}</span>
+  </form>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
-        <th>쿠폰번호</th>
-        <th>등록일</th>
-        <th>사용 회원</th>
-        <th>사용일</th>
+        <th (click)="sortTable('key')">쿠폰번호</th>
+        <th (click)="sortTable('key')">등록일</th>
+        <th (click)="sortTable('use_user')">사용 회원</th>
+        <th (click)="sortTable('use_date')">사용일</th>
       </tr>
     </thead>
     <tbody>

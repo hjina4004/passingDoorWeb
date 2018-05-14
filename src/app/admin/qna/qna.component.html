@@ -1,7 +1,13 @@
 <div *ngIf="isShow" class="pdw-list">
+  <form class="form-inline" action="return false">
+    <label for="s_writer">검색 글쓴 회원:&nbsp;&nbsp;</label>
+    <input type="text" class="form-control" id="s_writer" name="s_writer" [(ngModel)]="s_writer" (ngModelChange)="dataChanged($event)">
+    <span class="pending-message">{{s_message}}</span>
+  </form>
+
   <div class="pdw-item" *ngFor="let item of qnas | async">
     <div class="form-control item-title" (click)="expandItem(item)">
-      {{ item.title }} ({{ item.writer }})
+      <div>{{ item.title }} ({{ item.writer }})</div>
       <button type="button" class="btn btn-outline-danger" (click)="prepareDeleteItem(item, $event)">삭제</button>
       <button [hidden]="item.expanded" type="button" class="btn btn-outline-primary">{{labelBtnWrite(item)}}</button>
     </div>
