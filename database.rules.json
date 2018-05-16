@@ -1,5 +1,8 @@
 {
   "rules": {
+    "coupon": {
+      ".indexOn": ["code_number", "use_user", "use_date"]
+    },
     ".read": "true",
     ".write": "auth != null"
   }
