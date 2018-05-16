@@ -46,7 +46,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   mailto() {
-    const strMail = 'mailto:help@passok.kr';
+    const strMail = 'mailto:realtobe@naver.com';
     let subject = '?subject=' + encodeURI(this.itemQnA.name + '이 합격문에 문의드립니다.');
     let body = '&body=' + encodeURI('이름: ' + this.itemQnA.name + '\n전화번호: ' + this.itemQnA.phone + '\n\n' + this.itemQnA.content);
     window.location.href = strMail + subject + body;
