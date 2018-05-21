@@ -88,6 +88,7 @@ export class MemberComponent extends BaseChild implements OnInit {
     str += "<tr><td>부동산 공법</td><td id='ticket_pl'>" + this.getTicketDate(user.ticket.ticket_pl) + "</td></tr>";
     str += "<tr><td>공시법 및 세법</td><td id='ticket_dtl'>" + this.getTicketDate(user.ticket.ticket_dtl) + "</td></tr>";
     str += "</tbody></table>";
+    str += "<button id='tableTicket-delete-user' class='btn btn-warning btn-block'>계정 삭제</button>";
     str += "<button id='tableTicket-apply' class='btn btn-danger btn-block d-none'>적용</button>";
 
     this.showModal({title:title, message:str, type:"tableTicket"});
@@ -98,6 +99,7 @@ export class MemberComponent extends BaseChild implements OnInit {
       let strID = ids[i];
       $('#'+strID).click(function() { parent.editTicket(strID); });
     }
+    $('#tableTicket-delete-user').click(function() { parent.deleteUser(); });
     $('#tableTicket-apply').click(function() { parent.applyTicket(); });
   }
 
@@ -109,7 +111,21 @@ export class MemberComponent extends BaseChild implements OnInit {
     let txtHtml = '<input type="text" class="form-control" value="' + this.selected_user.ticket[elID].expiry_date + '">';
     $('#'+elID).off();
     $('#'+elID).html(txtHtml);
+    $('#tableTicket-delete-user').addClass('d-none');
     $('#tableTicket-apply').removeClass('d-none');
+  }
+
+  deleteUser() {
+    let msg = "정말로 삭제하시겠습니까?";
+    if (window.confirm(msg)) {
+      // console.log("user remove");
+    } else {
+      console.log("No!! user remove");
+      return;
+    }
+
+    this.usersService.deleteUser(this.selected_user);
+    this.hideModal();
   }
 
   applyTicket() {

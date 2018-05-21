@@ -36,4 +36,9 @@ export class UsersService {
     const itemsRef = this.db.object(this.dbPath+"/"+data.key+"/ticket");
     itemsRef.set(data.ticket);
   }
+
+  deleteUser(data) {
+    const itemsRef = this.db.object(this.dbPath+"/"+data.key);
+    itemsRef.remove();
+  }
 }
