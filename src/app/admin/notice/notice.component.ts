@@ -54,7 +54,7 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   loadData() {
-    const itemsRef = this.afDB.list('/notice');
+    const itemsRef = this.afDB.list('/notice', ref => ref.orderByChild("update_date"));
     this.notices = itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({key: c.key,  ...c.payload.val(), expanded: false, editing: false, editedContent:'' }));
     });
@@ -143,11 +143,13 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
   }
 
   prepareEditItem(item) {
+    item.editedTitle = item.title
     item.editedContent = item.content;
     item.editing = true;
   }
 
   editItem(item) {
+    item.title = item.editedTitle;
     item.content = item.editedContent
       .replace(/<script/g,"&lt;script")
       .replace(/<\/script/g,"&lt;/script")
@@ -158,7 +160,7 @@ export class NoticeComponent extends BaseChild implements OnInit, OnDestroy {
     data.idx = item.idx;
     data.writer = item.writer;
     data.reg_date = item.reg_date;
-    data.update_date = new Date().toISOString().slice(0,16);
+    data.update_date = this.app.getDateWithUTCOffset();
     data.title = item.title;
     data.content = item.content;
     data.level = item.level;
